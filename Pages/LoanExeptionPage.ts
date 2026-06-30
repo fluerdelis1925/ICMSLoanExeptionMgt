@@ -44,6 +44,8 @@ export class LoanExceptionPage {
 
         await this.loanNoTextbox.fill(loanNo);
         await this.searchButton.click();
+        
+                await this.page.waitForTimeout(500)
 
     }
 

@@ -17,8 +17,7 @@ test('Loan Exection Mgt', async({page})=>
   await Homepages.openLoanException();
 
   const LoanException = new LoanExceptionPage(page);
-  await LoanException.selectFutureDate();
-
+  await LoanException.selectFutureDate("2024/06/29","2033/06/29");
       for(const data of records){
 
         await LoanException.searchLoan(data.baseAcctNo);
@@ -26,10 +25,5 @@ test('Loan Exection Mgt', async({page})=>
         await LoanException.repostIfPending(data.baseAcctNo);
 
     }
-
-
-  
-
-  await page.pause();
 
 })

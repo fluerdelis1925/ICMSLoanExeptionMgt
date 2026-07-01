@@ -7,6 +7,9 @@ export class LoanExceptionPage {
     readonly repostButton: Locator;
     readonly tableRows: Locator;
     private readonly btn : Locator;
+    private readonly startDate : Locator;
+    private readonly EndDate : Locator;
+    private readonly selectDate : Locator;
 
     constructor(private page: Page){
 
@@ -23,20 +26,24 @@ export class LoanExceptionPage {
             page.locator("tbody tr");
         this.btn = 
             page.getByRole('radio');
+        this.startDate = 
+            page.getByRole('textbox', { name: 'Start date' }).nth(1)
+          this.EndDate = 
+            page.getByRole('textbox', { name: 'End date' }).nth(1)
+            this.selectDate =
+           page.getByRole('textbox', { name: 'Start date' });
 
     }
 
-    async selectFutureDate(){
+    async selectFutureDate(strtDate: string, endDate: string){
 
-        await this.page.getByRole('textbox', { name: 'End date' }).click();
+        await this.selectDate.click();
+        await this.startDate.fill(strtDate);
+        await this.EndDate.fill(endDate);
+        await this.EndDate.press('Enter');
 
-        await this.page.getByTitle('Next year (Control + right)').dblclick();
-        await this.page.getByTitle('Next year (Control + right)').nth(1).dblclick();
-        await this.page.getByTitle('Next year (Control + right)').nth(1).click();
-        await this.page.getByTitle('Next year (Control + right)').nth(1).dblclick();
 
-        await this.page.getByText('31').nth(2).click();
-        await this.page.getByText('1').nth(2).click();
+
 
     }
 
@@ -45,7 +52,7 @@ export class LoanExceptionPage {
         await this.loanNoTextbox.fill(loanNo);
         await this.searchButton.click();
         
-                await this.page.waitForTimeout(500)
+              //  await this.page.waitForTimeout(3000)
 
     }
 

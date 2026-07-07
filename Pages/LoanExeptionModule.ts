@@ -1,6 +1,6 @@
 import { Page } from '@playwright/test';
 
-export class HomePage {
+export class LoanExceptionModules {
 
     constructor(private page: Page){}
 

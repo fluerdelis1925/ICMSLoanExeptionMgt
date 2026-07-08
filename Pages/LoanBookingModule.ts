@@ -7,10 +7,9 @@ export class LoanBookingPage
    private readonly CIFModule:Locator;
    private readonly CIFBooking:Locator;
    private readonly BasicInformation:Locator;
-  
-
-
-
+   private readonly  giverName:Locator;
+   private readonly  userName:Locator;
+   private readonly  sex:Locator;
 
    constructor(page:Page)
    {
@@ -18,7 +17,9 @@ export class LoanBookingPage
      this.CIFModule = this.page.locator('div').filter({ hasText: /^CIF Module$/ });
      this.CIFBooking = this.page.getByRole('menuitem', {name: 'CIF Booking'});
      this.BasicInformation = this.page.locator("#BasicInformation").getByText("Basic Information");
-    
+     this.giverName = this.page.locator("#givenName")
+     this.userName = this.page.locator("##surname")
+     this.sex = this.page.locator("#sex")
    }
 
    async goToCIFBooking():Promise<void>
@@ -36,4 +37,11 @@ export class LoanBookingPage
     await this.page.getByText("Philippines").click();
   }
 
+
+  async Detailformations(givenNames:string, userName:string, sex:string) :Promise<void>
+  {
+    this.giverName.fill(givenNames);
+    this.userName.fill(userName);
+    this.sex.fill(sex);
+  }
 }

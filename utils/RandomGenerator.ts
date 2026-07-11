@@ -14,7 +14,6 @@ static getlastName()
     
 }
 
-
 static getFullName()
 {
     return faker.person.fullName();
@@ -27,10 +26,8 @@ static getEmail()
 
 }
 
-static getPhoneNumber()
-{
-    return faker.phone.number();
-
+static generateMobileNumber(): string {
+  return '9' + Math.floor(Math.random() * 1_000_000_000).toString().padStart(9, '0');
 }
 
  static getUsername(): string {
@@ -80,6 +77,18 @@ static getPhoneNumber()
   static getRandomUUID(): string {
     return faker.string.uuid();
   }
+
+  static generateBirthDate(): string {
+  const year = Math.floor(Math.random() * (2005 - 1992 + 1)) + 1992;
+  const month = Math.floor(Math.random() * 12) + 1;
+  const day = Math.floor(Math.random() * 28) + 1;
+
+  const formattedMonth = month.toString().padStart(2, '0');
+  const formattedDay = day.toString().padStart(2, '0');
+
+  return `${year}/${formattedMonth}/${formattedDay}`;
+}
+
 
 
 }

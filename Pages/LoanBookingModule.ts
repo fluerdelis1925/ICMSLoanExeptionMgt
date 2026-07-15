@@ -1,8 +1,5 @@
 import { Page, Locator, expect } from '@playwright/test'
 import { RandomDataUtil } from '../utils/RandomGenerator';
-import { readCSV } from '../Pages/CsvReader';
-
-const records = readCSV("testdata/LOAN_DISBURSEMENT_2026061101.csv");
 
 export class LoanBookingPage {
   private readonly page: Page;
@@ -83,8 +80,11 @@ export class LoanBookingPage {
     await industry.click();
     const industryOptions = this.page.getByRole("option");
     await industryOptions.first().waitFor({ state: 'visible' });
-    await this.page.waitForTimeout(1000);
-    await this.page.getByRole("option", { name: tes }).click();
+    await this.page.waitForTimeout(100);
+    await this.page.getByRole("option", {
+    name: tes,
+    exact: true
+}).click();
     //await industryOptions.getByRole('option', { name: "Call Center" }).click();
     //await industryOptions.nth(Math.floor(Math.random() * await industryOptions.count())).click();
 
@@ -292,10 +292,9 @@ export class LoanBookingPage {
     await employerDrpDwn.first().waitFor({ state: 'visible' });
     await employerDrpDwn.last().click();
 
-    const EmngyContactBtm1 = this.page.locator(".src-views-Cust-CustomerRegistering-styles__cif-button-save--1hMxU").getByRole('button', { name: 'Submit' });
+    const EmngyContactBtm1 = this.page.getByRole('button', { name: 'submit' });
     await EmngyContactBtm1.waitFor({ state: "visible" });
     await EmngyContactBtm1.click();
-
   }
 
 }

@@ -295,6 +295,7 @@ export class LoanBookingPage {
     const EmngyContactBtm1 = this.page.getByRole('button', { name: 'submit' });
     await EmngyContactBtm1.waitFor({ state: "visible" });
     await EmngyContactBtm1.click();
+    await this.page.waitForTimeout(1000);
   }
 
 }
